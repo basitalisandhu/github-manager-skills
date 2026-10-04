@@ -1,0 +1,288 @@
+[
+  {
+    "number": 301,
+    "title": "Allow stacking two coupons",
+    "url": "https://github.com/example-org/shop/pull/301",
+    "state": "MERGED",
+    "author": {
+      "login": "octocat-a"
+    },
+    "createdAt": "2026-09-15T12:00:00Z",
+    "mergedAt": "2026-09-17T09:00:00Z",
+    "closedAt": "2026-09-17T09:00:00Z",
+    "isDraft": false,
+    "body": "",
+    "commits": [
+      {
+        "oid": "0301000000000000000000000000000000000000",
+        "authoredDate": "2026-09-15T09:00:00Z",
+        "committedDate": "2026-09-15T09:00:00Z"
+      },
+      {
+        "oid": "0301000000000000000000000000000000000001",
+        "authoredDate": "2026-09-16T11:00:00Z",
+        "committedDate": "2026-09-16T11:00:00Z"
+      }
+    ],
+    "reviews": [
+      {
+        "author": {
+          "login": "octocat-a"
+        },
+        "state": "COMMENTED",
+        "submittedAt": "2026-09-15T13:00:00Z"
+      },
+      {
+        "author": {
+          "login": "octocat-b"
+        },
+        "state": "CHANGES_REQUESTED",
+        "submittedAt": "2026-09-16T10:00:00Z"
+      },
+      {
+        "author": {
+          "login": "octocat-b"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-09-16T16:00:00Z"
+      }
+    ],
+    "closingIssuesReferences": [
+      {
+        "number": 201,
+        "url": "https://github.com/example-org/shop/issues/201"
+      }
+    ]
+  },
+  {
+    "number": 302,
+    "title": "Add the currency column to order exports",
+    "url": "https://github.com/example-org/shop/pull/302",
+    "state": "MERGED",
+    "author": {
+      "login": "octocat-b"
+    },
+    "createdAt": "2026-09-19T09:00:00Z",
+    "mergedAt": "2026-09-22T09:00:00Z",
+    "closedAt": "2026-09-22T09:00:00Z",
+    "isDraft": false,
+    "body": "",
+    "commits": [
+      {
+        "oid": "0302000000000000000000000000000000000000",
+        "authoredDate": "2026-09-18T09:00:00Z",
+        "committedDate": "2026-09-18T09:00:00Z"
+      }
+    ],
+    "reviews": [
+      {
+        "author": {
+          "login": "octocat-c"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-09-19T15:00:00Z"
+      }
+    ],
+    "closingIssuesReferences": [
+      {
+        "number": 202,
+        "url": "https://github.com/example-org/shop/issues/202"
+      }
+    ]
+  },
+  {
+    "number": 303,
+    "title": "Index the order search columns",
+    "url": "https://github.com/example-org/shop/pull/303",
+    "state": "MERGED",
+    "author": {
+      "login": "octocat-c"
+    },
+    "createdAt": "2026-09-23T10:00:00Z",
+    "mergedAt": "2026-09-24T09:00:00Z",
+    "closedAt": "2026-09-24T09:00:00Z",
+    "isDraft": false,
+    "body": "",
+    "commits": [
+      {
+        "oid": "0303000000000000000000000000000000000000",
+        "authoredDate": "2026-09-23T09:00:00Z",
+        "committedDate": "2026-09-23T09:00:00Z"
+      }
+    ],
+    "reviews": [
+      {
+        "author": {
+          "login": "octocat-a"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-09-23T14:00:00Z"
+      }
+    ],
+    "closingIssuesReferences": [
+      {
+        "number": 203,
+        "url": "https://github.com/example-org/shop/issues/203"
+      }
+    ]
+  },
+  {
+    "number": 304,
+    "title": "Use the store address from settings in receipts",
+    "url": "https://github.com/example-org/shop/pull/304",
+    "state": "MERGED",
+    "author": {
+      "login": "octocat-d"
+    },
+    "createdAt": "2026-09-17T09:00:00Z",
+    "mergedAt": "2026-09-19T15:00:00Z",
+    "closedAt": "2026-09-19T15:00:00Z",
+    "isDraft": false,
+    "body": "Reads the address from settings.\n\nFixes #207",
+    "commits": [
+      {
+        "oid": "0304000000000000000000000000000000000000",
+        "authoredDate": "2026-09-16T15:00:00Z",
+        "committedDate": "2026-09-16T15:00:00Z"
+      }
+    ],
+    "reviews": [
+      {
+        "author": {
+          "login": "octocat-a"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-09-18T09:00:00Z"
+      }
+    ],
+    "closingIssuesReferences": []
+  },
+  {
+    "number": 305,
+    "title": "Refund reason field (work in progress)",
+    "url": "https://github.com/example-org/shop/pull/305",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-e"
+    },
+    "createdAt": "2026-09-24T09:00:00Z",
+    "mergedAt": null,
+    "closedAt": null,
+    "isDraft": true,
+    "body": "Part of #205",
+    "commits": [
+      {
+        "oid": "0305000000000000000000000000000000000000",
+        "authoredDate": "2026-09-24T08:00:00Z",
+        "committedDate": "2026-09-24T08:00:00Z"
+      }
+    ],
+    "reviews": [],
+    "closingIssuesReferences": []
+  },
+  {
+    "number": 306,
+    "title": "Use the remote postcode table for shipping estimates",
+    "url": "https://github.com/example-org/shop/pull/306",
+    "state": "MERGED",
+    "author": {
+      "login": "octocat-a"
+    },
+    "createdAt": "2026-09-24T09:00:00Z",
+    "mergedAt": "2026-09-26T03:00:00Z",
+    "closedAt": "2026-09-26T03:00:00Z",
+    "isDraft": false,
+    "body": "",
+    "commits": [
+      {
+        "oid": "0306000000000000000000000000000000000000",
+        "authoredDate": "2026-09-24T08:00:00Z",
+        "committedDate": "2026-09-24T08:00:00Z"
+      }
+    ],
+    "reviews": [
+      {
+        "author": {
+          "login": "octocat-b"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-09-25T20:00:00Z"
+      }
+    ],
+    "closingIssuesReferences": [
+      {
+        "number": 209,
+        "url": "https://github.com/example-org/shop/issues/209"
+      }
+    ]
+  },
+  {
+    "number": 307,
+    "title": "Bump the test runner from 8.3.2 to 8.3.3",
+    "url": "https://github.com/example-org/shop/pull/307",
+    "state": "MERGED",
+    "author": {
+      "login": "dependabot[bot]"
+    },
+    "createdAt": "2026-09-21T00:05:00Z",
+    "mergedAt": "2026-09-21T06:00:00Z",
+    "closedAt": "2026-09-21T06:00:00Z",
+    "isDraft": false,
+    "body": "",
+    "commits": [
+      {
+        "oid": "0307000000000000000000000000000000000000",
+        "authoredDate": "2026-09-21T00:00:00Z",
+        "committedDate": "2026-09-21T00:00:00Z"
+      }
+    ],
+    "reviews": [],
+    "closingIssuesReferences": []
+  },
+  {
+    "number": 308,
+    "title": "Try a faster JSON encoder",
+    "url": "https://github.com/example-org/shop/pull/308",
+    "state": "CLOSED",
+    "author": {
+      "login": "octocat-c"
+    },
+    "createdAt": "2026-09-15T09:00:00Z",
+    "mergedAt": null,
+    "closedAt": "2026-09-18T09:00:00Z",
+    "isDraft": false,
+    "body": "",
+    "commits": [
+      {
+        "oid": "0308000000000000000000000000000000000000",
+        "authoredDate": "2026-09-15T08:00:00Z",
+        "committedDate": "2026-09-15T08:00:00Z"
+      }
+    ],
+    "reviews": [],
+    "closingIssuesReferences": []
+  },
+  {
+    "number": 309,
+    "title": "Tidy the README badges",
+    "url": "https://github.com/example-org/shop/pull/309",
+    "state": "MERGED",
+    "author": {
+      "login": "octocat-d"
+    },
+    "createdAt": "2026-09-10T09:00:00Z",
+    "mergedAt": "2026-09-12T09:00:00Z",
+    "closedAt": "2026-09-12T09:00:00Z",
+    "isDraft": false,
+    "body": "",
+    "commits": [
+      {
+        "oid": "0309000000000000000000000000000000000000",
+        "authoredDate": "2026-09-10T08:00:00Z",
+        "committedDate": "2026-09-10T08:00:00Z"
+      }
+    ],
+    "reviews": [],
+    "closingIssuesReferences": []
+  }
+]

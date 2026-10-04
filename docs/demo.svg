@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="1052" viewBox="0 0 920 1052" role="img" aria-label="github-manager pr-queue on the committed fixture export">
+<title>github-manager pr-queue on the committed fixture export</title>
+<rect width="920" height="1052" rx="8" fill="#0A1628"/>
+<path d="M0 8a8 8 0 0 1 8-8h904a8 8 0 0 1 8 8v28h-920z" fill="#13233D"/>
+<circle cx="20" cy="18" r="6" fill="#FF7B72"/><circle cx="40" cy="18" r="6" fill="#E3B341"/><circle cx="60" cy="18" r="6" fill="#7EE787"/>
+<text x="460" y="23" fill="#7D8BA1" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" text-anchor="middle" xml:space="preserve">github-manager pr-queue on the committed fixture export</text>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" fill="#D7DEE8" xml:space="preserve" style="white-space:pre">
+<text x="24" y="68" xml:space="preserve"><tspan fill="#7FD1AE">$ github-manager pr-queue tests/fixtures/pr_queue</tspan></text>
+<text x="24" y="88" xml:space="preserve">PR queue digest for example-org/shop, as of 2026-09-30T12:00:00Z (fixture-meta.json exported_at)</text>
+<text x="24" y="108" xml:space="preserve">19 open PRs (2 drafts, 1 by bot accounts); 9 flagged; threshold 24h, stale drafts after 14d</text>
+<text x="24" y="148" xml:space="preserve"><tspan fill="#FF7B72">blocked-on-reviewer</tspan> (1)</text>
+<text x="24" y="168" xml:space="preserve">  #101  only reviewer octocat-r has 9 other pending requests; waiting 5.1d (122.0h) since review</text>
+<text x="24" y="188" xml:space="preserve">requested (timeline)</text>
+<text x="24" y="208" xml:space="preserve"><tspan fill="#E3B341">waiting-on-review</tspan> (2)</text>
+<text x="24" y="228" xml:space="preserve">  #101  waiting 5.1d (122.0h) on octocat-r since review requested (timeline)</text>
+<text x="24" y="248" xml:space="preserve">  #118  waiting 30.0h on octocat-b, octocat-e since review requested (timeline)</text>
+<text x="24" y="268" xml:space="preserve"><tspan fill="#E3B341">no-reviewer</tspan> (1)</text>
+<text x="24" y="288" xml:space="preserve">  #116  open 3.1d (75.0h), no review requested and no review</text>
+<text x="24" y="308" xml:space="preserve"><tspan fill="#E3B341">changes-requested-no-new-commits</tspan> (1)</text>
+<text x="24" y="328" xml:space="preserve">  #111  octocat-b requested changes at 2026-09-22T15:00:00Z; no commit in the 7.9d (189.0h) since</text>
+<text x="24" y="348" xml:space="preserve"><tspan fill="#7EE787">re-request</tspan>-needed (1)</text>
+<text x="24" y="368" xml:space="preserve">  #112  1 commit(s) after octocat-b's changes request at 2026-09-26T10:00:00Z; octocat-b not</text>
+<text x="24" y="388" xml:space="preserve">re-requested</text>
+<text x="24" y="408" xml:space="preserve"><tspan fill="#FF7B72">failing-checks</tspan> (1)</text>
+<text x="24" y="428" xml:space="preserve">  #102  failing: test (failure)</text>
+<text x="24" y="448" xml:space="preserve"><tspan fill="#FF7B72">needs-rebase</tspan> (1)</text>
+<text x="24" y="468" xml:space="preserve">  #103  merge conflicts (mergeable=CONFLICTING, mergeStateStatus=DIRTY)</text>
+<text x="24" y="488" xml:space="preserve"><tspan fill="#E3B341">approved-not-merged</tspan> (1)</text>
+<text x="24" y="508" xml:space="preserve">  #115  approved at 2026-09-28T09:00:00Z (2.1d (51.0h) ago)</text>
+<text x="24" y="528" xml:space="preserve"><tspan fill="#FF7B72">stale-draft</tspan> (1)</text>
+<text x="24" y="548" xml:space="preserve">  #113  draft, last updated 2026-08-20T09:00:00Z (41.1d (987.0h) ago)</text>
+<text x="24" y="588" xml:space="preserve">Review queue (pending requests per reviewer, sorted by name, not a ranking)</text>
+<text x="24" y="608" xml:space="preserve">  octocat-b        pending  2  over 24h  1  oldest 30.0h</text>
+<text x="24" y="628" xml:space="preserve">  octocat-e        pending  1  over 24h  1  oldest 30.0h</text>
+<text x="24" y="648" xml:space="preserve">  octocat-r        pending 10  over 24h  1  oldest 5.1d (122.0h)</text>
+<text x="24" y="668" xml:space="preserve">  team platform    pending  2  over 24h  0  oldest 9.0h</text>
+<text x="24" y="708" xml:space="preserve">Next actions</text>
+<text x="24" y="728" xml:space="preserve">  <tspan fill="#7EE787">re-request</tspan>         #101  ask a second reviewer or reassign: only reviewer octocat-r has 9 other</text>
+<text x="24" y="748" xml:space="preserve">pending requests; waiting 5.1d (122.0h) since review requested (timeline)</text>
+<text x="24" y="768" xml:space="preserve">  <tspan fill="#7EE787">fix checks</tspan>         #102  ask the author to fix: failing: test (failure)</text>
+<text x="24" y="788" xml:space="preserve">  <tspan fill="#7EE787">rebase</tspan>             #103  ask the author to <tspan fill="#7EE787">rebase</tspan>: merge conflicts (mergeable=CONFLICTING,</text>
+<text x="24" y="808" xml:space="preserve">mergeStateStatus=DIRTY)</text>
+<text x="24" y="828" xml:space="preserve">  <tspan fill="#7EE787">nudge</tspan>              #111  check in with the author: octocat-b requested changes at</text>
+<text x="24" y="848" xml:space="preserve">2026-09-22T15:00:00Z; no commit in the 7.9d (189.0h) since</text>
+<text x="24" y="868" xml:space="preserve">  <tspan fill="#7EE787">re-request</tspan>         #112  <tspan fill="#7EE787">re-request</tspan> review from octocat-b: commits since the changes request</text>
+<text x="24" y="888" xml:space="preserve">  <tspan fill="#7EE787">close as stale</tspan>     #113  ask the author, then <tspan fill="#7EE787">close as stale</tspan> if abandoned: draft, last updated</text>
+<text x="24" y="908" xml:space="preserve">2026-08-20T09:00:00Z (41.1d (987.0h) ago)</text>
+<text x="24" y="928" xml:space="preserve">  merge              #115  merge, or record why it is held: approved at 2026-09-28T09:00:00Z (2.1d</text>
+<text x="24" y="948" xml:space="preserve">(51.0h) ago)</text>
+<text x="24" y="968" xml:space="preserve">  <tspan fill="#7EE787">request a reviewer</tspan> #116  <tspan fill="#7EE787">request a reviewer</tspan>: open 3.1d (75.0h), no review requested and no review</text>
+<text x="24" y="988" xml:space="preserve">  <tspan fill="#7EE787">nudge</tspan>              #118  <tspan fill="#7EE787">nudge</tspan> the requested reviewers: waiting 30.0h on octocat-b, octocat-e</text>
+<text x="24" y="1008" xml:space="preserve">since review requested (timeline)</text>
+<text x="24" y="1028" xml:space="preserve"><tspan fill="#7D8BA1">[exit 1]</tspan></text>
+</g>
+</svg>

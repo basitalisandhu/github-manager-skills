@@ -1,0 +1,18 @@
+[
+  {
+    "number": 38,
+    "title": "Sprint 38",
+    "state": "closed",
+    "due_on": "2026-09-25T07:00:00Z",
+    "open_issues": 2,
+    "closed_issues": 5
+  },
+  {
+    "number": 39,
+    "title": "Sprint 39",
+    "state": "open",
+    "due_on": "2026-10-09T07:00:00Z",
+    "open_issues": 1,
+    "closed_issues": 0
+  }
+]

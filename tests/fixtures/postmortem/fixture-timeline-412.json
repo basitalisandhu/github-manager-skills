@@ -1,0 +1,161 @@
+[
+  {
+    "id": 9001,
+    "event": "labeled",
+    "created_at": "2026-09-20T08:05:30Z",
+    "actor": {
+      "login": "octocat-oncall"
+    },
+    "label": {
+      "name": "incident",
+      "color": "d73a4a"
+    }
+  },
+  {
+    "id": 9002,
+    "event": "labeled",
+    "created_at": "2026-09-20T08:06:00Z",
+    "actor": {
+      "login": "octocat-oncall"
+    },
+    "label": {
+      "name": "sev2",
+      "color": "d73a4a"
+    }
+  },
+  {
+    "id": 9003,
+    "event": "assigned",
+    "created_at": "2026-09-20T08:10:00Z",
+    "actor": {
+      "login": "octocat-oncall"
+    },
+    "assignee": {
+      "login": "octocat-b"
+    }
+  },
+  {
+    "id": 5001,
+    "event": "commented",
+    "created_at": "2026-09-20T08:12:00Z",
+    "user": {
+      "login": "octocat-b"
+    },
+    "actor": {
+      "login": "octocat-b"
+    },
+    "body": "Looking into it. The checkout-api error rate has been elevated since about 07:50.",
+    "html_url": "https://github.com/example-org/shop/issues/412#issuecomment-5001"
+  },
+  {
+    "event": "cross-referenced",
+    "created_at": "2026-09-20T08:38:00Z",
+    "updated_at": "2026-09-20T08:38:00Z",
+    "actor": {
+      "login": "octocat-c"
+    },
+    "source": {
+      "type": "issue",
+      "issue": {
+        "number": 415,
+        "title": "Revert connection pool size change",
+        "html_url": "https://github.com/example-org/shop/pull/415",
+        "pull_request": {
+          "url": "https://api.github.com/repos/example-org/shop/pulls/415"
+        }
+      }
+    }
+  },
+  {
+    "id": 5002,
+    "event": "commented",
+    "created_at": "2026-09-20T08:40:00Z",
+    "user": {
+      "login": "octocat-c"
+    },
+    "actor": {
+      "login": "octocat-c"
+    },
+    "body": "Opened #415 to roll back the connection pool change from #409.",
+    "html_url": "https://github.com/example-org/shop/issues/412#issuecomment-5002"
+  },
+  {
+    "id": 5003,
+    "event": "commented",
+    "created_at": "2026-09-20T09:30:00Z",
+    "user": {
+      "login": "octocat-b"
+    },
+    "actor": {
+      "login": "octocat-b"
+    },
+    "body": "Error rate is back to baseline after #415 deployed. @octocat-oncall can you confirm on the dashboard?",
+    "html_url": "https://github.com/example-org/shop/issues/412#issuecomment-5003"
+  },
+  {
+    "id": 9010,
+    "event": "labeled",
+    "created_at": "2026-09-20T09:45:00Z",
+    "actor": {
+      "login": "octocat-b"
+    },
+    "label": {
+      "name": "mitigated",
+      "color": "d73a4a"
+    }
+  },
+  {
+    "event": "cross-referenced",
+    "created_at": "2026-09-20T10:40:00Z",
+    "updated_at": "2026-09-20T10:40:00Z",
+    "actor": {
+      "login": "octocat-c"
+    },
+    "source": {
+      "type": "issue",
+      "issue": {
+        "number": 418,
+        "title": "Alert on connection pool saturation",
+        "html_url": "https://github.com/example-org/shop/pull/418",
+        "pull_request": {
+          "url": "https://api.github.com/repos/example-org/shop/pulls/418"
+        }
+      }
+    }
+  },
+  {
+    "id": 9012,
+    "event": "labeled",
+    "created_at": "2026-09-20T10:55:00Z",
+    "actor": {
+      "login": "octocat-oncall"
+    },
+    "label": {
+      "name": "resolved",
+      "color": "d73a4a"
+    }
+  },
+  {
+    "id": 5004,
+    "event": "commented",
+    "created_at": "2026-09-20T11:00:00Z",
+    "user": {
+      "login": "octocat-oncall"
+    },
+    "actor": {
+      "login": "octocat-oncall"
+    },
+    "body": "Confirmed. Closing; the alerting follow-up is #418.",
+    "html_url": "https://github.com/example-org/shop/issues/412#issuecomment-5004"
+  },
+  {
+    "id": 9015,
+    "event": "closed",
+    "created_at": "2026-09-20T11:01:00Z",
+    "actor": {
+      "login": "octocat-oncall"
+    },
+    "state_reason": "completed",
+    "commit_id": null
+  }
+]

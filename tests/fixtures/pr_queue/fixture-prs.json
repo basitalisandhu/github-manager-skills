@@ -1,0 +1,858 @@
+[
+  {
+    "number": 101,
+    "title": "Add retry with backoff to the payment webhook",
+    "url": "https://github.com/example-org/shop/pull/101",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-a",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-25T09:00:00Z",
+    "updatedAt": "2026-09-25T10:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0101000000000000000000000000000000000000",
+        "authoredDate": "2026-09-25T08:30:00Z",
+        "committedDate": "2026-09-25T08:30:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 102,
+    "title": "Validate coupon codes on the server",
+    "url": "https://github.com/example-org/shop/pull/102",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-b",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T01:00:00Z",
+    "updatedAt": "2026-09-30T01:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0102000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T01:00:00Z",
+        "committedDate": "2026-09-30T01:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "FAILURE"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 103,
+    "title": "Move order totals into a shared module",
+    "url": "https://github.com/example-org/shop/pull/103",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-c",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T02:00:00Z",
+    "updatedAt": "2026-09-30T02:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      },
+      {
+        "__typename": "User",
+        "login": "octocat-b"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0103000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T02:00:00Z",
+        "committedDate": "2026-09-30T02:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "CONFLICTING",
+    "mergeStateStatus": "DIRTY"
+  },
+  {
+    "number": 104,
+    "title": "Add an index on orders.created_at",
+    "url": "https://github.com/example-org/shop/pull/104",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-d",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T03:00:00Z",
+    "updatedAt": "2026-09-30T03:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      },
+      {
+        "__typename": "Team",
+        "slug": "platform",
+        "name": "platform"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0104000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T03:00:00Z",
+        "committedDate": "2026-09-30T03:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 105,
+    "title": "Log the request id in checkout errors",
+    "url": "https://github.com/example-org/shop/pull/105",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-e",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T04:00:00Z",
+    "updatedAt": "2026-09-30T04:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0105000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T04:00:00Z",
+        "committedDate": "2026-09-30T04:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 106,
+    "title": "Cache shipping rates for ten minutes",
+    "url": "https://github.com/example-org/shop/pull/106",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-a",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T05:00:00Z",
+    "updatedAt": "2026-09-30T05:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0106000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T05:00:00Z",
+        "committedDate": "2026-09-30T05:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 107,
+    "title": "Rename the cart service config keys",
+    "url": "https://github.com/example-org/shop/pull/107",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-b",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T06:00:00Z",
+    "updatedAt": "2026-09-30T06:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0107000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T06:00:00Z",
+        "committedDate": "2026-09-30T06:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 108,
+    "title": "Show tax lines on the receipt page",
+    "url": "https://github.com/example-org/shop/pull/108",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-c",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T07:00:00Z",
+    "updatedAt": "2026-09-30T07:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0108000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T07:00:00Z",
+        "committedDate": "2026-09-30T07:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 109,
+    "title": "Remove the unused legacy export endpoint",
+    "url": "https://github.com/example-org/shop/pull/109",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-d",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T08:00:00Z",
+    "updatedAt": "2026-09-30T08:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0109000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T08:00:00Z",
+        "committedDate": "2026-09-30T08:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 110,
+    "title": "Paginate the admin order list",
+    "url": "https://github.com/example-org/shop/pull/110",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-e",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T09:00:00Z",
+    "updatedAt": "2026-09-30T09:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-r"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0110000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T09:00:00Z",
+        "committedDate": "2026-09-30T09:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 111,
+    "title": "Split the invoice PDF renderer",
+    "url": "https://github.com/example-org/shop/pull/111",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-c",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-20T09:00:00Z",
+    "updatedAt": "2026-09-22T15:00:00Z",
+    "reviewDecision": "CHANGES_REQUESTED",
+    "reviewRequests": [],
+    "reviews": [
+      {
+        "author": {
+          "login": "octocat-b"
+        },
+        "state": "CHANGES_REQUESTED",
+        "submittedAt": "2026-09-22T15:00:00Z",
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "oid": "0111000000000000000000000000000000000000",
+        "authoredDate": "2026-09-21T10:00:00Z",
+        "committedDate": "2026-09-21T10:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 112,
+    "title": "Handle expired sessions in the cart",
+    "url": "https://github.com/example-org/shop/pull/112",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-d",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-24T09:00:00Z",
+    "updatedAt": "2026-09-27T11:00:00Z",
+    "reviewDecision": "CHANGES_REQUESTED",
+    "reviewRequests": [],
+    "reviews": [
+      {
+        "author": {
+          "login": "octocat-b"
+        },
+        "state": "CHANGES_REQUESTED",
+        "submittedAt": "2026-09-26T10:00:00Z",
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "oid": "0112000000000000000000000000000000000000",
+        "authoredDate": "2026-09-24T08:00:00Z",
+        "committedDate": "2026-09-24T08:00:00Z"
+      },
+      {
+        "oid": "0112000000000000000000000000000000000001",
+        "authoredDate": "2026-09-27T11:00:00Z",
+        "committedDate": "2026-09-27T11:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 113,
+    "title": "WIP: experiment with a new search ranking",
+    "url": "https://github.com/example-org/shop/pull/113",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-e",
+      "is_bot": false
+    },
+    "isDraft": true,
+    "createdAt": "2026-08-10T09:00:00Z",
+    "updatedAt": "2026-08-20T09:00:00Z",
+    "reviewDecision": "",
+    "reviewRequests": [],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0113000000000000000000000000000000000000",
+        "authoredDate": "2026-08-10T08:00:00Z",
+        "committedDate": "2026-08-10T08:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 114,
+    "title": "Draft: refund flow for partial orders",
+    "url": "https://github.com/example-org/shop/pull/114",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-a",
+      "is_bot": false
+    },
+    "isDraft": true,
+    "createdAt": "2026-09-28T09:00:00Z",
+    "updatedAt": "2026-09-29T16:00:00Z",
+    "reviewDecision": "",
+    "reviewRequests": [],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0114000000000000000000000000000000000000",
+        "authoredDate": "2026-09-29T16:00:00Z",
+        "committedDate": "2026-09-29T16:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 115,
+    "title": "Upgrade the image resizing library",
+    "url": "https://github.com/example-org/shop/pull/115",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-a",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-27T09:00:00Z",
+    "updatedAt": "2026-09-28T09:00:00Z",
+    "reviewDecision": "APPROVED",
+    "reviewRequests": [],
+    "reviews": [
+      {
+        "author": {
+          "login": "octocat-c"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-09-28T09:00:00Z",
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "oid": "0115000000000000000000000000000000000000",
+        "authoredDate": "2026-09-27T08:00:00Z",
+        "committedDate": "2026-09-27T08:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 116,
+    "title": "Add a health check for the queue worker",
+    "url": "https://github.com/example-org/shop/pull/116",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-b",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-27T09:00:00Z",
+    "updatedAt": "2026-09-27T09:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0116000000000000000000000000000000000000",
+        "authoredDate": "2026-09-27T08:00:00Z",
+        "committedDate": "2026-09-27T08:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 117,
+    "title": "Bump the http client from 2.31.0 to 2.32.3",
+    "url": "https://github.com/example-org/shop/pull/117",
+    "state": "OPEN",
+    "author": {
+      "login": "dependabot[bot]",
+      "is_bot": true
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-30T06:00:00Z",
+    "updatedAt": "2026-09-30T06:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "Team",
+        "slug": "platform",
+        "name": "platform"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0117000000000000000000000000000000000000",
+        "authoredDate": "2026-09-30T06:00:00Z",
+        "committedDate": "2026-09-30T06:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 118,
+    "title": "Retry failed email sends from the outbox",
+    "url": "https://github.com/example-org/shop/pull/118",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-c",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-28T10:00:00Z",
+    "updatedAt": "2026-09-29T06:00:00Z",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "reviewRequests": [
+      {
+        "__typename": "User",
+        "login": "octocat-b"
+      },
+      {
+        "__typename": "User",
+        "login": "octocat-e"
+      }
+    ],
+    "reviews": [],
+    "commits": [
+      {
+        "oid": "0118000000000000000000000000000000000000",
+        "authoredDate": "2026-09-28T09:00:00Z",
+        "committedDate": "2026-09-28T09:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  },
+  {
+    "number": 119,
+    "title": "Fix the typo in the order confirmation email",
+    "url": "https://github.com/example-org/shop/pull/119",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-e",
+      "is_bot": false
+    },
+    "isDraft": false,
+    "createdAt": "2026-09-29T08:00:00Z",
+    "updatedAt": "2026-09-30T08:00:00Z",
+    "reviewDecision": "APPROVED",
+    "reviewRequests": [],
+    "reviews": [
+      {
+        "author": {
+          "login": "octocat-d"
+        },
+        "state": "APPROVED",
+        "submittedAt": "2026-09-30T08:00:00Z",
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "oid": "0119000000000000000000000000000000000000",
+        "authoredDate": "2026-09-29T08:00:00Z",
+        "committedDate": "2026-09-29T08:00:00Z"
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "name": "test",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      {
+        "__typename": "CheckRun",
+        "name": "lint",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      }
+    ],
+    "mergeable": "MERGEABLE",
+    "mergeStateStatus": "CLEAN"
+  }
+]

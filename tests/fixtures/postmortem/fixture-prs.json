@@ -1,0 +1,49 @@
+[
+  {
+    "number": 409,
+    "title": "Increase the database connection pool size",
+    "url": "https://github.com/example-org/shop/pull/409",
+    "state": "MERGED",
+    "author": {
+      "login": "octocat-d"
+    },
+    "createdAt": "2026-09-18T10:00:00Z",
+    "mergedAt": "2026-09-19T16:00:00Z",
+    "labels": [],
+    "mergeCommit": {
+      "oid": "409a000000000000000000000000000000000000"
+    }
+  },
+  {
+    "number": 415,
+    "title": "Revert connection pool size change",
+    "url": "https://github.com/example-org/shop/pull/415",
+    "state": "MERGED",
+    "author": {
+      "login": "octocat-c"
+    },
+    "createdAt": "2026-09-20T08:37:00Z",
+    "mergedAt": "2026-09-20T09:02:00Z",
+    "labels": [
+      {
+        "name": "hotfix"
+      }
+    ],
+    "mergeCommit": {
+      "oid": "415b000000000000000000000000000000000000"
+    }
+  },
+  {
+    "number": 418,
+    "title": "Alert on connection pool saturation",
+    "url": "https://github.com/example-org/shop/pull/418",
+    "state": "OPEN",
+    "author": {
+      "login": "octocat-c"
+    },
+    "createdAt": "2026-09-20T10:39:00Z",
+    "mergedAt": null,
+    "labels": [],
+    "mergeCommit": null
+  }
+]

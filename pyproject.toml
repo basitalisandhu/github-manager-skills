@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "github-manager-skills"
+version = "0.1.0"
+description = "Engineering manager reports computed from exported GitHub data: a stuck-PR and review-queue digest, an iteration report and an incident postmortem timeline, every number cited to its PR or issue."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Muhammad Basit Ali" }]
+keywords = [
+  "claude-code",
+  "claude-code-plugin",
+  "agent-skills",
+  "engineering-management",
+  "pull-requests",
+  "code-review",
+  "review-queue",
+  "cycle-time",
+  "sprint-report",
+  "postmortem",
+  "incident-response",
+  "github",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.scripts]
+github-manager = "github_manager_skills.cli:main"
+
+[project.urls]
+Homepage = "https://basitalisandhu.github.io/github-manager-skills/"
+Repository = "https://github.com/basitalisandhu/github-manager-skills"
+Issues = "https://github.com/basitalisandhu/github-manager-skills/issues"
+Changelog = "https://github.com/basitalisandhu/github-manager-skills/blob/main/CHANGELOG.md"
+
+# The wheel carries the dispatcher and the skill scripts only: github_manager_skills/cli.py and
+# github_manager_skills/skills/<skill>/scripts/*.py. The dispatcher finds the skills next to itself.
+[tool.hatch.build.targets.wheel]
+bypass-selection = true
+
+[tool.hatch.build.targets.wheel.force-include]
+"scripts/cli.py" = "github_manager_skills/cli.py"
+"plugins/github-manager/skills/pr-queue-digest/scripts" = "github_manager_skills/skills/pr-queue-digest/scripts"
+"plugins/github-manager/skills/iteration-report/scripts" = "github_manager_skills/skills/iteration-report/scripts"
+"plugins/github-manager/skills/incident-postmortem-timeline/scripts" = "github_manager_skills/skills/incident-postmortem-timeline/scripts"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "scripts/cli.py",
+  "plugins/github-manager/**",
+  "tests/**",
+  "README.md",
+  "LICENSE",
+  "CHANGELOG.md",
+  "pyproject.toml",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"
+norecursedirs = ["fixtures"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+extend-exclude = ["tests/fixtures"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]

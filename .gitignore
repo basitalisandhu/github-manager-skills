@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# Local exports and reports (real GitHub data stays out of the repository; test fixtures are fixture-*.json)
+export/
+gh-export/
+digest.md
+postmortem.md
+iteration-report.md
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/

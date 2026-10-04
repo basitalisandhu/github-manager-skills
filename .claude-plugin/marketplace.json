@@ -1,0 +1,30 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "github-manager-skills",
+  "description": "Claude Code skills for engineering managers that compute from exported GitHub data: a stuck-PR and review-queue digest, an iteration report and an incident postmortem timeline, every number cited to the PR or issue it came from.",
+  "owner": {
+    "name": "Muhammad Basit Ali",
+    "url": "https://github.com/basitalisandhu"
+  },
+  "metadata": {
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "github-manager",
+      "source": "./plugins/github-manager",
+      "description": "Three skills, each with a tested standard-library script over saved gh exports: pr-queue-digest, iteration-report and incident-postmortem-timeline. Team level only, no per-person scoring.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Muhammad Basit Ali",
+        "url": "https://github.com/basitalisandhu"
+      },
+      "homepage": "https://github.com/basitalisandhu/github-manager-skills",
+      "repository": "https://github.com/basitalisandhu/github-manager-skills",
+      "license": "MIT",
+      "keywords": ["engineering-management", "pull-requests", "code-review", "review-queue", "cycle-time", "sprint-report", "postmortem", "incident-response", "github"],
+      "category": "productivity",
+      "tags": ["github", "engineering-management", "reporting", "incident"]
+    }
+  ]
+}
