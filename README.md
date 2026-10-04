@@ -88,6 +88,8 @@ The plugin installs as shown at the top. The scripts are also available without 
 
 From a checkout, `python3 scripts/cli.py` is the same dispatcher.
 
+This pack is also part of [claude-skills](https://github.com/basitalisandhu/claude-skills), which holds every skill I maintain as one marketplace: `/plugin marketplace add basitalisandhu/claude-skills`.
+
 ## Security posture
 
 - **Read-only, offline scripts.** The skill scripts read the folder you name and print to standard output. They import no network module (the repository validator checks this), call no subprocess, and write no files.
@@ -149,6 +151,7 @@ Yes, without Claude Code: export with `gh`, then run `github-manager pr-queue <f
 | [repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills) | Claude Code skills for repository audits and documentation, including release notes checked against commits |
 | [claude-dev-skills](https://github.com/basitalisandhu/claude-dev-skills) | Claude Code skills for everyday development: code review, refactoring, debugging, CI and containers, docs and security basics |
 | [cc-hooks](https://github.com/basitalisandhu/cc-hooks) | Typed Python SDK and offline test runner for Claude Code hooks |
+| [Get this and the other packs with one clone](https://github.com/basitalisandhu/claude-skills) | All packs in one repository; this plugin's pages are at https://basitalisandhu.github.io/claude-skills/plugins/github-manager/ |
 
 More from the author: [github.com/basitalisandhu](https://github.com/basitalisandhu).
 
