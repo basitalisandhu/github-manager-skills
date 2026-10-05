@@ -21,6 +21,41 @@ def report(*extra: str, folder: str = FOLDER) -> dict:
     return rep
 
 
+def test_check_draft_reports_only_the_unmatched_table_time(tmp_path):
+    draft = tmp_path / "draft.md"
+    draft.write_text(read_fixture(FIXTURES / "postmortem", "fixture-draft.json")["draft"])
+    rc, rep = run_json(mod, [FOLDER, "--issue", "412", "--check", str(draft), "--json"])
+    assert rc == 1
+    assert [(item["line"], item["time"]) for item in rep["draft_problems"]] == [(7, "23:59")]
+
+
+def test_check_draft_accepts_one_minute_tolerance_and_ignores_prose(tmp_path):
+    draft = tmp_path / "draft.md"
+    draft.write_text(
+        "Prose at 23:59 is not a table event.\n| 08:06 | Close to detection |\n"
+        "| 2026-09-20T11:05:00+00:00 | Closed |\n"
+    )
+    rows = report()["timeline"]
+    close = next(r["time"] for r in rows if "Closed" in r["what"] or "closed" in r["what"])
+    draft.write_text(draft.read_text().replace("2026-09-20T11:05:00+00:00", close))
+    rc, rep = run_json(mod, [FOLDER, "--issue", "412", "--check", str(draft), "--json"])
+    assert rc == 0 and rep["draft_problems"] == []
+
+
+def test_check_draft_matches_timezone_offsets_and_skips_code_tables():
+    rows = [{"time": "2026-09-20T09:02:00Z"}]
+    assert mod.check_draft(
+        "| 2026-09-20T11:02:30+02:00 | same instant |\n"
+        "```\n| 23:59 | code, not an event |\n```\n", rows
+    ) == []
+    assert mod.check_draft("| 2026-09-21T09:02:00Z | wrong day |", rows)[0]["line"] == 1
+
+
+def test_check_missing_draft_is_bad_input(tmp_path):
+    rc, _, err = run_main(mod, [FOLDER, "--issue", "412", "--check", str(tmp_path / "absent.md")])
+    assert rc == 2 and "cannot read" in err
+
+
 def phase(rep: dict, name: str) -> dict:
     return next(p for p in rep["phases"] if p["phase"] == name)
 
