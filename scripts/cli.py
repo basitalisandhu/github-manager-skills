@@ -15,7 +15,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 PROG = "github-manager"
 HERE = Path(__file__).resolve().parent

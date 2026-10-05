@@ -4,6 +4,8 @@
 
 github-manager-skills is a Claude Code plugin with three skills for engineering managers and tech leads who report on work that lives in GitHub. It exists because manager artefacts (the standup digest, the sprint report, the postmortem timeline) are usually written from memory, and memory miscounts: a PR merged the day after the sprint gets included, the mitigation lands before the label, the reviewer with ten pending requests goes unnoticed. Each skill reads a saved `gh` export with a standard-library Python script, computes the figures with stated definitions, and cites every row, so the text Claude writes can be checked by clicking the links.
 
+Common searches it answers: stale PRs and review bottlenecks, cycle time to merge and review turnaround (the DORA metrics' lead time for changes up to the merge, not the other three), and a cited incident postmortem timeline. It does not do issue triage.
+
 ```text
 /plugin marketplace add basitalisandhu/github-manager-skills
 /plugin install github-manager@github-manager-skills
@@ -72,8 +74,8 @@ The plugin installs as shown at the top. The scripts are also available without 
 - **Container image** (GitHub Packages, linux/amd64 and linux/arm64), entrypoint `github-manager <subcommand> [args]`; mount the export folder at `/work`:
 
   ```bash
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.1.1 pr-queue /work/export --markdown
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.1.1 postmortem /work/export --issue 412 --redact
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.1.2 pr-queue /work/export --markdown
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.1.2 postmortem /work/export --issue 412 --redact
   ```
 
   The image is published when a version tag is pushed, signed with cosign (keyless), with a build provenance attestation and an SPDX SBOM attached to the GitHub Release.

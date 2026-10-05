@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows Keep
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-10-05
+
+### Changed
+
+- Rewrote all three skill descriptions to 463 to 513 characters (from 820 to 887): each starts with a verb, states the goal before the mechanism, carries one quoted phrase a user would type, a "Use when ..." sentence and a "Not for ..." boundary, and stays double-quoted.
+- `iteration-report` states its boundary with `weekly-status-rollup` (ways-of-working-skills) and `incident-postmortem-timeline` with `postmortem-writer` (claude-dev-skills).
+- Tests open text files with `encoding="utf-8"` (the scripts already did), and CI runs tests and ruff on `windows-latest` as well as Ubuntu and macOS.
+- The plugin and root READMEs mention stale PRs, the DORA metrics (only lead time up to the merge is computed) and issue triage (not covered).
+- `scripts/validate_plugin.py` now fails when a description is over 600 characters, is not double-quoted, or lacks "Use " or "Not for"; `tests/test_skill_frontmatter.py` covers each rule and the existing `## Limits` requirement.
+- Version 0.1.2 in `pyproject.toml`, `plugin.json`, `marketplace.json`, the dispatcher and the README container examples.
+
 ## [0.1.1] - 2026-10-04
 
 ### Fixed
