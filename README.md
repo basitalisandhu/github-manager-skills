@@ -1,10 +1,12 @@
 # github-manager-skills: Claude Code skills for engineering managers
 
-**Engineering manager skills for Claude Code that compute from exported GitHub data: a stuck-PR and review-queue digest, an iteration report, and an incident postmortem timeline, every number cited to the PR or issue it came from.**
+**Engineering manager skills for Claude Code that compute from exported GitHub data: a stuck-PR and review-queue digest, an iteration report, an incident postmortem timeline and an issue triage digest, every number cited to the PR or issue it came from.**
 
-github-manager-skills is a Claude Code plugin with three skills for engineering managers and tech leads who report on work that lives in GitHub. It exists because manager artefacts (the standup digest, the sprint report, the postmortem timeline) are usually written from memory, and memory miscounts: a PR merged the day after the sprint gets included, the mitigation lands before the label, the reviewer with ten pending requests goes unnoticed. Each skill reads a saved `gh` export with a standard-library Python script, computes the figures with stated definitions, and cites every row, so the text Claude writes can be checked by clicking the links.
+github-manager-skills is a Claude Code plugin with four skills for engineering managers and tech leads who report on work that lives in GitHub. It exists because manager artefacts (the standup digest, the sprint report, the postmortem timeline) are usually written from memory, and memory miscounts: a PR merged the day after the sprint gets included, the mitigation lands before the label, the reviewer with ten pending requests goes unnoticed. Each skill reads a saved `gh` export with a standard-library Python script, computes the figures with stated definitions, and cites every row, so the text Claude writes can be checked by clicking the links.
 
-Common searches it answers: stale PRs and review bottlenecks, cycle time to merge and review turnaround (the DORA metrics' lead time for changes up to the merge, not the other three), and a cited incident postmortem timeline. It does not do issue triage.
+Common searches it answers: stale PRs and review bottlenecks, cycle time to merge and review turnaround (the DORA metrics' lead time for changes up to the merge, not the other three), a cited incident postmortem timeline, and issue triage (unlabelled, unanswered, duplicate and stale issues, label suggestions).
+
+Find this when you search for: issue triage, stale issues, duplicate issues, issue backlog cleanup, label suggestions.
 
 ```text
 /plugin marketplace add basitalisandhu/github-manager-skills
@@ -31,6 +33,7 @@ Generated from the committed fixtures by [`scripts/render_demo.py`](scripts/rend
 - Is one reviewer holding up the queue? Answered as a count of pending requests, not a score: `pr-queue-digest`
 - What did we ship this iteration, what carried over, and what are our cycle time and review turnaround, with the PRs behind each number? `iteration-report`
 - Build the timeline for an incident review, with detected, acknowledged, mitigated and resolved taken from what the issue recorded: `incident-postmortem-timeline`
+- Which issues need triage: unlabelled, unanswered, probable duplicates, stale, most thumbs-up, with a suggested label each: `issue-triage-digest`
 
 ## Skills
 
@@ -39,6 +42,7 @@ Generated from the committed fixtures by [`scripts/render_demo.py`](scripts/rend
 | `pr-queue-digest` | "which PRs are stuck?", "PR digest for standup", "what is waiting on review?", "which drafts can we close?" | `pr_queue.py` | PRs waiting on review longer than N hours, PRs blocked on one requested reviewer with a long queue, changes requested with no new commits, commits with no re-request, failing checks, conflicts, approved but unmerged, no reviewer, stale drafts; a review-queue table per reviewer (counts only); one next action per PR, each citing the PR |
 | `iteration-report` | "write the sprint report", "what did we ship?", "what carried over?", "what is our cycle time?" | `iteration_report.py` | shipped PRs with the issues they close, carried over, completed, not planned, newly opened, PRs merged outside the window (listed, not counted), cycle time median and p90 (from first commit or PR creation, stated), review turnaround median; team level only |
 | `incident-postmortem-timeline` | "write the postmortem for #412", "build the incident timeline", "how long did it take to mitigate?" | `postmortem.py` | a timeline of label changes, assignments, comments, linked PR merges and closes, each citing its event id, comment id or PR; phases derived by stated rules, with disagreeing signals reported; people as roles; contributing factors as questions; a postmortem skeleton |
+| `issue-triage-digest` | "which issues need triage?", "what has nobody answered?", "any duplicate issues?", "prepare the triage meeting" | `issue_triage.py` | unlabelled issues, issues with no reply from anyone but the author for N days, possible duplicates by title word overlap, stale issues, issues with many thumbs-up, and a suggested label per issue from a YAML keyword map; counts per check and per label; Markdown and JSON |
 
 Every script reads files only, prints Markdown or text by default and JSON with `--json`, takes `--redact` to replace logins with stable tokens or roles, and exits 2 on bad input. `pr_queue.py` exits 1 when it flags a PR, so it can gate a scheduled job.
 
@@ -52,7 +56,7 @@ gh pr list --repo OWNER/REPO --state open --limit 500 \
   > prs.json
 ```
 
-plus `gh api repos/OWNER/REPO/issues/N/timeline --paginate --slurp` for review request times and incident timelines, `gh issue list --json ...` for iteration scope, and `gh pr view N --json ...` for the PRs an incident references. Each skill states the minimal token scopes: read-only Metadata, Pull requests and Issues on a fine-grained token (Checks and Commit statuses for the check columns), or the default `gh auth login` token. The saved folder is the audit trail: re-running a script on it gives the same numbers.
+plus `gh api repos/OWNER/REPO/issues/N/timeline --paginate --slurp` for review request times and incident timelines, `gh issue list --json ...` for iteration scope and issue triage, and `gh pr view N --json ...` for the PRs an incident references. Each skill states the minimal token scopes: read-only Metadata, Pull requests and Issues on a fine-grained token (Checks and Commit statuses for the check columns), or the default `gh auth login` token. The saved folder is the audit trail: re-running a script on it gives the same numbers.
 
 ## What this is not
 
@@ -74,8 +78,8 @@ The plugin installs as shown at the top. The scripts are also available without 
 - **Container image** (GitHub Packages, linux/amd64 and linux/arm64), entrypoint `github-manager <subcommand> [args]`; mount the export folder at `/work`:
 
   ```bash
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.1.2 pr-queue /work/export --markdown
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.1.2 postmortem /work/export --issue 412 --redact
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.2.0 pr-queue /work/export --markdown
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.2.0 postmortem /work/export --issue 412 --redact
   ```
 
   The image is published when a version tag is pushed, signed with cosign (keyless), with a build provenance attestation and an SPDX SBOM attached to the GitHub Release.
@@ -87,6 +91,7 @@ The plugin installs as shown at the top. The scripts are also available without 
 | `pr-queue` | `pr_queue.py` (pr-queue-digest) |
 | `iteration-report` | `iteration_report.py` (iteration-report) |
 | `postmortem` | `postmortem.py` (incident-postmortem-timeline) |
+| `issue-triage` | `issue_triage.py` (issue-triage-digest) |
 
 From a checkout, `python3 scripts/cli.py` is the same dispatcher.
 
@@ -94,7 +99,7 @@ This pack is also part of [claude-skills](https://github.com/basitalisandhu/clau
 
 ## Security posture
 
-- **Read-only, offline scripts.** The skill scripts read the folder you name and print to standard output. They import no network module (the repository validator checks this), call no subprocess, and write no files.
+- **Read-only, offline scripts.** The skill scripts read the folder you name and print to standard output. They import no network module (the repository validator checks this), call no subprocess, and write files only where you pass `--out` (`issue_triage.py`).
 - **Exports are yours.** The `gh` commands in each skill only read. Keep export folders out of version control; `.gitignore` already ignores `export/` and `gh-export/`.
 - **Untrusted content.** PR titles, issue bodies and comments are data, never instructions: each `SKILL.md` says so.
 - **Redaction.** `--redact` replaces every login the export contains (and `@mentions` of them in text) with a stable `user-xxxxxx` token, or with a role in the postmortem.
@@ -129,7 +134,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the ground rules and [docs/good-first
 ## Frequently asked questions
 
 **Are there Claude Code skills for engineering managers that work from GitHub data?**
-Yes, this plugin: `pr-queue-digest`, `iteration-report` and `incident-postmortem-timeline`. Each reads a saved `gh` export with a tested script and cites every number to the PR or issue it came from.
+Yes, this plugin: `pr-queue-digest`, `iteration-report`, `incident-postmortem-timeline` and `issue-triage-digest`. Each reads a saved `gh` export with a tested script and cites every number to the PR or issue it came from.
 
 **Does it call the GitHub API or need a token?**
 The scripts do not; they read JSON files. You run the `gh` export commands listed in each skill, with your own `gh` login and read-only access.

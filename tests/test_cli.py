@@ -31,7 +31,7 @@ def test_help_lists_every_subcommand():
     result = run("--help")
     assert result.returncode == 0
     assert result.stdout.startswith("usage: github-manager <subcommand>")
-    assert list(cli.COMMANDS) == ["pr-queue", "iteration-report", "postmortem"]
+    assert list(cli.COMMANDS) == ["pr-queue", "iteration-report", "postmortem", "issue-triage"]
     for name, (_, script, _) in cli.COMMANDS.items():
         assert f"  {name} " in result.stdout
         assert script in result.stdout

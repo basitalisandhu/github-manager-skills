@@ -15,7 +15,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-__version__ = "0.1.2"
+__version__ = "0.2.0"
 
 PROG = "github-manager"
 HERE = Path(__file__).resolve().parent
@@ -42,6 +42,11 @@ COMMANDS: dict[str, tuple[str, str, str]] = {
         "incident-postmortem-timeline",
         "postmortem.py",
         "Blameless incident timeline and postmortem skeleton from an issue export",
+    ),
+    "issue-triage": (
+        "issue-triage-digest",
+        "issue_triage.py",
+        "Unlabelled, unanswered, duplicate, stale and popular issues with suggested labels",
     ),
 }
 

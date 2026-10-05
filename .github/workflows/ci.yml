@@ -69,7 +69,7 @@ jobs:
         run: |
           docker build --build-arg VERSION=ci -t github-manager-skills:ci .
           docker run --rm github-manager-skills:ci --help > help.txt && grep "^usage: github-manager <subcommand>" help.txt
-          for s in pr-queue iteration-report postmortem; do docker run --rm github-manager-skills:ci "$s" --help > /dev/null; done
+          for s in pr-queue iteration-report postmortem issue-triage; do docker run --rm github-manager-skills:ci "$s" --help > /dev/null; done
           docker run --rm -v "$PWD/tests/fixtures:/work:ro" github-manager-skills:ci postmortem /work/postmortem --issue 412 --redact > pm.md
           grep "^# Postmortem:" pm.md
           docker run --rm github-manager-skills:ci --version

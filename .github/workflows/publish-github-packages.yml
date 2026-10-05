@@ -125,13 +125,13 @@ jobs:
             ${{ env.IMAGE }}:latest
           labels: |
             org.opencontainers.image.title=github-manager-skills
-            org.opencontainers.image.description=Engineering manager reports from exported GitHub data (PR queue digest, iteration report, incident postmortem timeline) behind one command
+            org.opencontainers.image.description=Engineering manager reports from exported GitHub data (PR queue digest, iteration report, incident postmortem timeline, issue triage digest) behind one command
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.licenses=MIT
             org.opencontainers.image.version=${{ env.VERSION }}
             org.opencontainers.image.revision=${{ github.sha }}
           annotations: |
-            index:org.opencontainers.image.description=Engineering manager reports from exported GitHub data (PR queue digest, iteration report, incident postmortem timeline) behind one command
+            index:org.opencontainers.image.description=Engineering manager reports from exported GitHub data (PR queue digest, iteration report, incident postmortem timeline, issue triage digest) behind one command
             index:org.opencontainers.image.source=https://github.com/${{ github.repository }}
             index:org.opencontainers.image.licenses=MIT
           # Provenance comes from attest-build-provenance below; keep the image index free of extra manifests.
