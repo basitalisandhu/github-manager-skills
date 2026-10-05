@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows Keep
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-05
+
+### Added
+
+- `issue-triage-digest`: `issue_triage.py` reads a saved `gh issue list --json` export and flags unlabelled issues, issues with no reply from anyone but the author for `--unanswered-days`, possible duplicates by title word overlap (`--similarity`), stale issues (`--stale-days`) and issues with at least `--reactions` thumbs-up; suggests labels per issue from a YAML or JSON keyword map (`--keywords`); prints text, Markdown or JSON, or writes `issue-triage.md` and `issue-triage.json` with `--out`; counts per check and per label only; exit 1 when anything is flagged.
+- `github-manager issue-triage` subcommand in the dispatcher, the container image and the Python package.
+
+### Changed
+
+- Version 0.2.0 in `pyproject.toml`, `plugin.json`, `marketplace.json`, the dispatcher and the README container examples. The READMEs no longer say issue triage is out of scope.
+
 ## [0.1.2] - 2026-10-05
 
 ### Changed
