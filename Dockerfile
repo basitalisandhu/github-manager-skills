@@ -26,7 +26,7 @@ RUN set -e; for d in /tmp/skills/*/scripts; do \
 FROM ${PYTHON_IMAGE}
 ARG VERSION=0.0.0-dev
 LABEL org.opencontainers.image.title="github-manager-skills" \
-      org.opencontainers.image.description="Engineering manager reports from exported GitHub data (PR queue digest, iteration report, incident postmortem timeline) behind one command" \
+      org.opencontainers.image.description="Engineering manager reports from exported GitHub data (PR queue digest, iteration report, incident postmortem timeline, issue triage digest) behind one command" \
       org.opencontainers.image.source="https://github.com/basitalisandhu/github-manager-skills" \
       org.opencontainers.image.url="https://github.com/basitalisandhu/github-manager-skills" \
       org.opencontainers.image.licenses="MIT" \

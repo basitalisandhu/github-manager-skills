@@ -445,7 +445,7 @@ def main(argv: list[str] | None = None) -> int:
     print(json.dumps(rep, indent=2) if args.json else render_markdown(rep))
     if args.check and not args.json:
         for problem in rep["draft_problems"]:
-            print(f"draft line {problem['line']}: {problem['time']}: {problem['message']}")
+            print(f"draft line {problem['line']}: {problem['time']}: {problem['message']}", file=sys.stderr)
     return 1 if rep.get("draft_problems") else 0
 
 

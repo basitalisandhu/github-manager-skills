@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "github-manager-skills"
-version = "0.1.1"
-description = "Engineering manager reports computed from exported GitHub data: a stuck-PR and review-queue digest, an iteration report and an incident postmortem timeline, every number cited to its PR or issue."
+version = "0.2.0"
+description = "Engineering manager reports computed from exported GitHub data: a stuck-PR and review-queue digest, an iteration report, an incident postmortem timeline and an issue triage digest, every number cited to its PR or issue."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
@@ -23,6 +23,7 @@ keywords = [
   "sprint-report",
   "postmortem",
   "incident-response",
+  "issue-triage",
   "github",
 ]
 classifiers = [
@@ -58,6 +59,7 @@ bypass-selection = true
 "plugins/github-manager/skills/pr-queue-digest/scripts" = "github_manager_skills/skills/pr-queue-digest/scripts"
 "plugins/github-manager/skills/iteration-report/scripts" = "github_manager_skills/skills/iteration-report/scripts"
 "plugins/github-manager/skills/incident-postmortem-timeline/scripts" = "github_manager_skills/skills/incident-postmortem-timeline/scripts"
+"plugins/github-manager/skills/issue-triage-digest/scripts" = "github_manager_skills/skills/issue-triage-digest/scripts"
 
 [tool.hatch.build.targets.sdist]
 include = [

@@ -39,6 +39,7 @@ jobs:
           /tmp/wheel-check/bin/pip install dist/*.whl
           /tmp/wheel-check/bin/github-manager --help
           /tmp/wheel-check/bin/github-manager postmortem tests/fixtures/postmortem --issue 412 --redact > /dev/null
+          /tmp/wheel-check/bin/github-manager issue-triage --help > /dev/null
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: dist

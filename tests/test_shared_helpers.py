@@ -10,7 +10,7 @@ h = load_script("pr-queue-digest", "_ghexport.py")
 
 
 def test_every_skill_has_an_identical_copy():
-    assert len(COPIES) == 3
+    assert len(COPIES) == 4
     texts = {p.read_text(encoding="utf-8") for p in COPIES}
     assert len(texts) == 1, "the _ghexport.py copies differ; copy one over the others"
 

@@ -27,6 +27,10 @@ def test_check_draft_reports_only_the_unmatched_table_time(tmp_path):
     rc, rep = run_json(mod, [FOLDER, "--issue", "412", "--check", str(draft), "--json"])
     assert rc == 1
     assert [(item["line"], item["time"]) for item in rep["draft_problems"]] == [(7, "23:59")]
+    rc, out, err = run_main(mod, [FOLDER, "--issue", "412", "--check", str(draft)])
+    assert rc == 1
+    assert "draft line 7: 23:59:" in err
+    assert "draft line" not in out
 
 
 def test_check_draft_accepts_one_minute_tolerance_and_ignores_prose(tmp_path):

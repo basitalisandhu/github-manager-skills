@@ -4,8 +4,32 @@ All notable changes to this project are documented here. The format follows Keep
 
 ## [Unreleased]
 
+### Added
+
 - Check draft postmortem table times against exported timeline rows, with line
   numbers and a one-minute tolerance.
+
+## [0.2.0] - 2026-10-05
+
+### Added
+
+- `issue-triage-digest`: `issue_triage.py` reads a saved `gh issue list --json` export and flags unlabelled issues, issues with no reply from anyone but the author for `--unanswered-days`, possible duplicates by title word overlap (`--similarity`), stale issues (`--stale-days`) and issues with at least `--reactions` thumbs-up; suggests labels per issue from a YAML or JSON keyword map (`--keywords`); prints text, Markdown or JSON, or writes `issue-triage.md` and `issue-triage.json` with `--out`; counts per check and per label only; exit 1 when anything is flagged.
+- `github-manager issue-triage` subcommand in the dispatcher, the container image and the Python package.
+
+### Changed
+
+- Version 0.2.0 in `pyproject.toml`, `plugin.json`, `marketplace.json`, the dispatcher and the README container examples. The READMEs no longer say issue triage is out of scope.
+
+## [0.1.2] - 2026-10-05
+
+### Changed
+
+- Rewrote all three skill descriptions to 463 to 513 characters (from 820 to 887): each starts with a verb, states the goal before the mechanism, carries one quoted phrase a user would type, a "Use when ..." sentence and a "Not for ..." boundary, and stays double-quoted.
+- `iteration-report` states its boundary with `weekly-status-rollup` (ways-of-working-skills) and `incident-postmortem-timeline` with `postmortem-writer` (claude-dev-skills).
+- Tests open text files with `encoding="utf-8"` (the scripts already did), and CI runs tests and ruff on `windows-latest` as well as Ubuntu and macOS.
+- The plugin and root READMEs mention stale PRs, the DORA metrics (only lead time up to the merge is computed) and issue triage (not covered).
+- `scripts/validate_plugin.py` now fails when a description is over 600 characters, is not double-quoted, or lacks "Use " or "Not for"; `tests/test_skill_frontmatter.py` covers each rule and the existing `## Limits` requirement.
+- Version 0.1.2 in `pyproject.toml`, `plugin.json`, `marketplace.json`, the dispatcher and the README container examples.
 
 ## [0.1.1] - 2026-10-04
 

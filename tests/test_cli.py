@@ -31,7 +31,7 @@ def test_help_lists_every_subcommand():
     result = run("--help")
     assert result.returncode == 0
     assert result.stdout.startswith("usage: github-manager <subcommand>")
-    assert list(cli.COMMANDS) == ["pr-queue", "iteration-report", "postmortem"]
+    assert list(cli.COMMANDS) == ["pr-queue", "iteration-report", "postmortem", "issue-triage"]
     for name, (_, script, _) in cli.COMMANDS.items():
         assert f"  {name} " in result.stdout
         assert script in result.stdout
@@ -93,8 +93,9 @@ def test_postmortem_through_the_dispatcher():
 
 def test_version_matches_every_version_field():
     pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
-    plugin = json.loads((ROOT / "plugins" / "github-manager" / ".claude-plugin" / "plugin.json").read_text())
-    market = json.loads((ROOT / ".claude-plugin" / "marketplace.json").read_text())
+    plugin_json = ROOT / "plugins" / "github-manager" / ".claude-plugin" / "plugin.json"
+    plugin = json.loads(plugin_json.read_text(encoding="utf-8"))
+    market = json.loads((ROOT / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     expected = pyproject["project"]["version"]
     assert plugin["version"] == expected
     assert market["metadata"]["version"] == expected
