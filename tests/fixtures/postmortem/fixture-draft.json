@@ -1,0 +1,3 @@
+{
+  "draft": "# Synthetic incident draft\n\n| Time | Event |\n|---|---|\n| 08:05 | Detected |\n| 2026-09-20T09:02:00Z | Mitigated |\n| 23:59 | Incorrect synthetic time |\n"
+}

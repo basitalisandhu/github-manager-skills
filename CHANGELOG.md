@@ -4,6 +4,11 @@ All notable changes to this project are documented here. The format follows Keep
 
 ## [Unreleased]
 
+### Added
+
+- Check draft postmortem table times against exported timeline rows, with line
+  numbers and a one-minute tolerance.
+
 ## [0.2.0] - 2026-10-05
 
 ### Added
