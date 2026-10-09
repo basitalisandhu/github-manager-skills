@@ -7,14 +7,14 @@
     "url": "https://github.com/basitalisandhu"
   },
   "metadata": {
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "github-manager",
       "source": "./plugins/github-manager",
       "description": "Four skills, each with a tested standard-library script over saved gh exports: pr-queue-digest, iteration-report, incident-postmortem-timeline and issue-triage-digest. Team level only, no per-person scoring.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "author": {
         "name": "Muhammad Basit Ali",
         "url": "https://github.com/basitalisandhu"

@@ -4,6 +4,8 @@ All notable changes to this project are documented here. The format follows Keep
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-09
+
 ### Added
 
 - Check draft postmortem table times against exported timeline rows, with line
@@ -52,5 +54,6 @@ All notable changes to this project are documented here. The format follows Keep
 - `release.yml`: PyPI trusted publishing of the `github-manager-skills` package, off until the repository variable `PYPI_PUBLISH` is `true`.
 - Six tasks in `docs/good-first-issues.md`.
 
-[Unreleased]: https://github.com/basitalisandhu/github-manager-skills/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/basitalisandhu/github-manager-skills/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/basitalisandhu/github-manager-skills/compare/v0.2.0...v0.3.0
 [0.1.0]: https://github.com/basitalisandhu/github-manager-skills/releases/tag/v0.1.0

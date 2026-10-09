@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "github-manager-skills"
-version = "0.2.0"
+version = "0.3.0"
 description = "Engineering manager reports computed from exported GitHub data: a stuck-PR and review-queue digest, an iteration report, an incident postmortem timeline and an issue triage digest, every number cited to its PR or issue."
 readme = "README.md"
 requires-python = ">=3.11"

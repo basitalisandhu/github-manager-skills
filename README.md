@@ -78,8 +78,8 @@ The plugin installs as shown at the top. The scripts are also available without 
 - **Container image** (GitHub Packages, linux/amd64 and linux/arm64), entrypoint `github-manager <subcommand> [args]`; mount the export folder at `/work`:
 
   ```bash
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.2.0 pr-queue /work/export --markdown
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.2.0 postmortem /work/export --issue 412 --redact
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.3.0 pr-queue /work/export --markdown
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.3.0 postmortem /work/export --issue 412 --redact
   ```
 
   The image is published when a version tag is pushed, signed with cosign (keyless), with a build provenance attestation and an SPDX SBOM attached to the GitHub Release.
