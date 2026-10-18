@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 
-from conftest import load_script, run_json, run_main
+from conftest import FIXTURES, load_script, run_json, run_main
 
 mod = load_script("issue-triage-digest", "issue_triage.py")
 NOW = "2026-10-05T00:00:00Z"
@@ -145,3 +145,44 @@ def test_text_output_is_deterministic(tmp_path):
     second = run_main(mod, [str(folder)])
     assert first == second and first[0] == 1
     assert "possible-duplicate: 1 (#4)" in first[1]
+
+
+# The committed fixture (tests/fixtures/issue_triage), the one the README quick start and CI run.
+FIX = FIXTURES / "issue_triage"
+KEYWORDS = FIX / "fixture-labels-keywords.json"
+
+
+def test_committed_fixture_flags_the_planted_issues():
+    rc, rep = run_json(mod, [str(FIX), "--keywords", str(KEYWORDS), "--json"])
+    assert rc == 1
+    flagged = {r["number"]: set(r["checks"]) for r in rep["issues"] if r["checks"]}
+    assert flagged == {201: {"unlabelled", "unanswered", "popular"}, 203: {"stale"}, 204: {"possible-duplicate"},
+                       205: {"unlabelled", "unanswered"}}
+    assert rep["as_of_source"] == "fixture-meta.json exported_at"
+
+
+def test_committed_fixture_bot_reply_is_not_an_answer_and_fresh_issues_pass():
+    rc, rep = run_json(mod, [str(FIX), "--json"])
+    numbers = {r["number"] for r in rep["issues"] if r["checks"]}
+    assert 205 in numbers  # only a bot replied
+    assert not numbers & {202, 206}  # labelled, answered, fresh
+
+
+def test_committed_fixture_suggests_labels_only_where_missing():
+    _, rep = run_json(mod, [str(FIX), "--keywords", str(KEYWORDS), "--json"])
+    suggested = {r["number"]: r["suggested_labels"] for r in rep["issues"] if r["suggested_labels"]}
+    assert suggested == {201: ["bug"], 205: ["bug"]}
+
+
+def test_committed_fixture_markdown_cites_every_issue_link():
+    rc, out, _ = run_main(mod, [str(FIX), "--markdown"])
+    assert rc == 1
+    for n in (201, 203, 204, 205):
+        assert f"[#{n}](https://github.com/example-org/app/issues/{n})" in out
+
+
+def test_out_folder_writes_both_files(tmp_path):
+    rc, _, _ = run_main(mod, [str(FIX), "--out", str(tmp_path / "triage")])
+    assert rc == 1
+    assert json.loads((tmp_path / "triage" / "issue-triage.json").read_text(encoding="utf-8"))["summary"]["flagged"]
+    assert (tmp_path / "triage" / "issue-triage.md").read_text(encoding="utf-8").startswith("## Issue triage digest")

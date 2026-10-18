@@ -4,6 +4,25 @@ All notable changes to this project are documented here. The format follows Keep
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-10-18
+
+### Fixed
+
+- A malformed export no longer crashes or passes silently. A `number` that is not a whole number crashed `pr_queue.py`, `iteration_report.py` and `postmortem.py` with a traceback and exit 1, which a scheduled job reads as "flagged"; a `createdAt` that was missing or not an ISO time made `pr_queue.py` and `iteration_report.py` report "0 flagged" for a PR they could not read. All four scripts now check every row through the shared `check_rows` helper and exit 2 with the file, the row and the export command to re-run. A garbled `mergedAt`, `closedAt` or `updatedAt` is bad input too; null stays allowed.
+- An empty export file now says "the file is empty" instead of a JSON decoder message, and a timeline or PR file holding an object (for example a `gh api` error body) names the file and says it found an object.
+- `pr_queue.py` exits 2 when `meta.json` is not an object (it was ignored silently), and `issue_triage.py` names the meta file it read (it always printed `meta.json`, also for `fixture-meta.json`).
+
+### Added
+
+- A committed issue triage fixture (`tests/fixtures/issue_triage`, six synthetic issues with planted unlabelled, unanswered, bot-only, duplicate, stale and popular cases and a JSON keyword map), run in CI with its expected exit 1, and in the README quick start.
+- `tests/test_malformed_inputs.py`: empty file, CSV instead of JSON, object instead of list, a non-numeric or boolean `number`, unparseable `createdAt`, `mergedAt` and timeline bodies, across all four scripts (36 cases), and five tests over the committed triage fixture. 143 tests before, 184 after.
+- README: one exit code table for all scripts, and real sample output for `issue-triage`, `iteration-report` and `postmortem`; each SKILL.md states the same exit codes and what bad input covers.
+
+### Changed
+
+- `pr-queue-digest` description quotes "which approved PRs are not merged yet?" and points open issues at `issue-triage-digest`; `issue-triage-digest` description leads with the goal rather than the script and quotes "what has nobody answered?".
+- Version 0.3.1 in `pyproject.toml`, `plugin.json`, `marketplace.json`, the dispatcher and the README container examples.
+
 ## [0.3.0] - 2026-10-09
 
 ### Added
