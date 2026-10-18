@@ -1,0 +1,5 @@
+{
+  "bug": ["crash", "crashes", "error", "broken", "does nothing"],
+  "documentation": ["docs", "typo", "readme"],
+  "enhancement": ["add", "support", "export"]
+}

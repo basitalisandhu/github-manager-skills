@@ -44,7 +44,79 @@ Generated from the committed fixtures by [`scripts/render_demo.py`](scripts/rend
 | `incident-postmortem-timeline` | "write the postmortem for #412", "build the incident timeline", "how long did it take to mitigate?" | `postmortem.py` | a timeline of label changes, assignments, comments, linked PR merges and closes, each citing its event id, comment id or PR; phases derived by stated rules, with disagreeing signals reported; people as roles; contributing factors as questions; a postmortem skeleton |
 | `issue-triage-digest` | "which issues need triage?", "what has nobody answered?", "any duplicate issues?", "prepare the triage meeting" | `issue_triage.py` | unlabelled issues, issues with no reply from anyone but the author for N days, possible duplicates by title word overlap, stale issues, issues with many thumbs-up, and a suggested label per issue from a YAML keyword map; counts per check and per label; Markdown and JSON |
 
-Every script reads files only, prints Markdown or text by default and JSON with `--json`, takes `--redact` to replace logins with stable tokens or roles, and exits 2 on bad input. `pr_queue.py` exits 1 when it flags a PR, so it can gate a scheduled job.
+Every script reads files only, prints Markdown or text by default and JSON with `--json`, and takes `--redact` to replace logins with stable tokens or roles.
+
+### Exit codes
+
+The same three codes everywhere, so a scheduled job can tell "something to look at" from "the export is broken":
+
+| Script | 0 | 1 | 2 |
+|---|---|---|---|
+| `pr_queue.py` | nothing flagged | at least one PR flagged | bad input or usage |
+| `issue_triage.py` | nothing flagged | at least one issue flagged | bad input or usage |
+| `postmortem.py` | written, no draft problems | `--check` found draft times that match no exported row | bad input or usage |
+| `iteration_report.py` | report written | not used | bad input or usage |
+
+Bad input means a missing folder or file, an empty file, a file that is not JSON, JSON of the wrong shape (an object where `gh` writes a list), a `number` that is not a whole number, or a `createdAt`, `mergedAt` or `closedAt` that is not an ISO time. The message names the file and the row and says which export command to re-run; a malformed export never produces a traceback or an empty "nothing to report".
+
+## Sample output
+
+Real output from the committed fixtures (synthetic data, example handles). Try each one from a clone:
+
+<details>
+<summary><code>python3 scripts/cli.py issue-triage tests/fixtures/issue_triage --keywords tests/fixtures/issue_triage/fixture-labels-keywords.json</code></summary>
+
+```text
+issue triage: example-org/app as of 2026-10-05T09:00:00Z (fixture-meta.json exported_at)
+6 open issues, 4 flagged
+  unlabelled: 2 (#201, #205)
+  unanswered: 2 (#201, #205)
+  possible-duplicate: 1 (#204)
+  stale: 1 (#203)
+  popular: 1 (#201)
+#201 App crashes when saving large file: no label; no reply from anyone but the author in 34.0d (threshold 7.0d); 7 thumbs-up; suggest: bug
+#203 Docs typo in install guide: no update for 126.0d (threshold 60.0d)
+#204 Crashes when saving a large file: title 80% similar to #201
+#205 Login button does nothing on Safari: no label; no reply from anyone but the author in 10.0d (threshold 7.0d); suggest: bug
+```
+
+</details>
+
+<details>
+<summary><code>python3 scripts/cli.py iteration-report tests/fixtures/iteration --from 2026-09-14 --to 2026-09-25</code> (first lines)</summary>
+
+```markdown
+## Iteration report: 2026-09-14 to 2026-09-25
+
+Window 2026-09-14T00:00:00Z to 2026-09-26T00:00:00Z (UTC, end exclusive). Source: fixture-issues.json, fixture-milestones.json, fixture-prs.json. Team level only: no per-person counts or rankings.
+
+### Summary
+
+- Shipped 5 PRs (#301, #302, #303, #304, #307), closing 4 issues (#201, #202, #203, #207); shipped PRs that link no issue: 1 (#307).
+- Scope: milestone 'Sprint 38' (the one milestone due in the window), 7 issues (#201, #202, #203, #204, #205, #207, #208). Completed 4 (#201, #202, #203, #207), closed as not planned 1 (#208), carried over 2 (#204, #205).
+- Newly opened in the window: 3 issues (#207, #209, #210), of which 1 in scope (#207).
+- Cycle time (first commit to merge, n=5, rows #301, #302, #303, #304, #307): median 2.0d (48.0h), p90 4.0d (96.0h). Start bases used: first commit.
+- Review turnaround (PR creation to first review by someone other than the author, n=4, rows #301, #302, #303, #304): median 14.0h. Merged with no such review: 1 (#307).
+- Not counted: 2 PRs merged outside the window (#306, #309) and 1 closed without merging (#308).
+```
+
+</details>
+
+<details>
+<summary><code>python3 scripts/cli.py postmortem tests/fixtures/postmortem --issue 412 --redact</code> (phases table)</summary>
+
+```markdown
+## Phases
+
+| Phase | Time (UTC) | Since detection | Signal | Citation |
+|---|---|---|---|---|
+| detected | 2026-09-20T08:05:00Z | 0m | Issue opened: Checkout API returning 502 errors | [issue #412 createdAt](https://github.com/example-org/shop/issues/412) |
+| acknowledged | 2026-09-20T08:10:00Z | 5m | Assigned to responder-1 | event 9003 |
+| mitigated | 2026-09-20T09:02:00Z | 57m | PR #415 merged: Revert connection pool size change | [PR #415 mergedAt, merge commit 415b000](https://github.com/example-org/shop/pull/415) |
+| resolved | 2026-09-20T10:55:00Z | 2h50m | Label added: resolved | event 9012 |
+```
+
+</details>
 
 ## How the data gets in
 
@@ -78,8 +150,8 @@ The plugin installs as shown at the top. The scripts are also available without 
 - **Container image** (GitHub Packages, linux/amd64 and linux/arm64), entrypoint `github-manager <subcommand> [args]`; mount the export folder at `/work`:
 
   ```bash
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.3.0 pr-queue /work/export --markdown
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.3.0 postmortem /work/export --issue 412 --redact
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.3.1 pr-queue /work/export --markdown
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.3.1 postmortem /work/export --issue 412 --redact
   ```
 
   The image is published when a version tag is pushed, signed with cosign (keyless), with a build provenance attestation and an SPDX SBOM attached to the GitHub Release.

@@ -26,10 +26,13 @@ jobs:
           python-version: "3.11"
       - name: Repository validator
         run: python3 scripts/validate_plugin.py
-      - name: Run each skill script on its fixture (pr-queue exits 1 because the fixture has planted stuck PRs)
+      - name: Run each skill script on its fixture (pr-queue and issue-triage exit 1 because the fixtures have planted findings)
         run: |
           set +e
           python3 scripts/cli.py pr-queue tests/fixtures/pr_queue > /dev/null; test $? -eq 1 || exit 1
+          python3 scripts/cli.py issue-triage tests/fixtures/issue_triage --keywords tests/fixtures/issue_triage/fixture-labels-keywords.json > /dev/null; test $? -eq 1 || exit 1
+          printf '' > /tmp/empty-prs.json && mkdir -p /tmp/empty && mv /tmp/empty-prs.json /tmp/empty/prs.json
+          python3 scripts/cli.py pr-queue /tmp/empty > /dev/null 2>&1; test $? -eq 2 || exit 1
           set -e
           python3 scripts/cli.py iteration-report tests/fixtures/iteration --from 2026-09-14 --to 2026-09-25 > /dev/null
           python3 scripts/cli.py postmortem tests/fixtures/postmortem --issue 412 --redact > /dev/null
