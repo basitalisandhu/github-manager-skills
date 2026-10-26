@@ -3,6 +3,8 @@
 Planted: two carried-over issues (#204, #205) and one PR merged just after the window (#306 at 2026-09-26T03:00Z),
 plus a PR merged before it (#309), one closed unmerged (#308), one linked through the PR body only (#304), one
 bot PR merged without review (#307), and one issue closed as not planned (#208).
+Scope changes (timeline files): #205 moved into Sprint 38 on 2026-09-17 (event 9253), #209 added on 2026-09-20
+(event 9291) and removed on 2026-09-22 (event 9292); #201 was milestoned before the window and is not a change.
 Cycle times (first commit to merge): 6, 24, 48, 72, 96 hours. Review turnaround: 4, 6, 22, 24 hours.
 """
 from __future__ import annotations
@@ -204,5 +206,65 @@ def test_split_exports_are_merged_by_number(fixture_copy):
     rep = report(folder=str(folder))
     assert numbers(rep["shipped"]) == [301, 302, 303, 304, 307]
     assert numbers(rep["carried_over"]) == [204, 205]
-    assert rep["source_files"] == ["fixture-milestones.json", "issues-closed.json", "issues-open.json",
+    assert rep["source_files"] == ["fixture-milestones.json", "fixture-timeline-201.json", "fixture-timeline-205.json",
+                                   "fixture-timeline-209.json", "issues-closed.json", "issues-open.json",
                                    "prs-closed.json", "prs-open.json"]
+
+
+def test_scope_added_during_the_window_cites_the_event():
+    added = report()["scope"]["added_during_window"]
+    assert [(r["number"], r["cite"], r["when"]) for r in added] == [
+        (205, "event 9253", "2026-09-17T10:00:05Z"), (209, "event 9291", "2026-09-20T08:00:00Z")]
+
+
+def test_scope_removed_during_the_window_cites_the_event():
+    removed = report()["scope"]["removed_during_window"]
+    assert [(r["number"], r["cite"]) for r in removed] == [(209, "event 9292")]
+
+
+def test_milestoned_before_the_window_and_other_milestones_are_not_changes():
+    rep = report()
+    changed = numbers(rep["scope"]["added_during_window"]) + numbers(rep["scope"]["removed_during_window"])
+    assert 201 not in changed
+    assert "event 9252" not in [r["cite"] for r in rep["scope"]["removed_during_window"]]  # Sprint 37, not scope
+
+
+def test_scope_change_summary_line_and_sections():
+    rc, out, _err = run_main(mod, [FOLDER, *WINDOW])
+    assert rc == 0
+    assert "- Scope changes during the window (milestoned and demilestoned events for 'Sprint 38' in the window, " \
+           "from 3 timeline-<N>.json files): added 2 (#205, #209), removed 1 (#209)." in out
+    assert "### Added to scope during the window" in out and "### Removed from scope during the window" in out
+
+
+def test_without_timelines_scope_changes_are_not_measured(fixture_copy):
+    folder = fixture_copy("iteration")
+    for path in folder.glob("fixture-timeline-*.json"):
+        path.unlink()
+    rep = report(folder=str(folder))
+    assert rep["scope"]["changes_basis"].startswith("not measured: no timeline-<N>.json files")
+    assert rep["scope"]["added_during_window"] == [] and rep["scope"]["removed_during_window"] == []
+    rc, out, _err = run_main(mod, [str(folder), *WINDOW])
+    assert "Scope changes during the window: not measured" in out
+    assert "### Added to scope during the window" not in out
+
+
+def test_scope_change_without_event_id_cites_the_file_row(fixture_copy):
+    folder = fixture_copy("iteration")
+    events = read_fixture(folder, "fixture-timeline-209.json")
+    del events[1]["id"]
+    write_fixture(folder, "fixture-timeline-209.json", events)
+    removed = report(folder=str(folder))["scope"]["removed_during_window"]
+    assert removed[0]["cite"] == "fixture-timeline-209.json row 2"
+
+
+def test_scope_changes_need_a_milestone_scope(fixture_copy):
+    folder = fixture_copy("iteration")
+    (folder / "fixture-milestones.json").unlink()
+    issues = read_fixture(folder, "fixture-issues.json")
+    for i in issues:
+        i["milestone"] = None
+    write_fixture(folder, "fixture-issues.json", issues)
+    rep = report(folder=str(folder))
+    assert rep["scope"]["changes_basis"].startswith("not measured: scope is not a milestone")
+    assert rep["scope"]["added_during_window"] == []

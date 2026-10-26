@@ -40,7 +40,7 @@ Generated from the committed fixtures by [`scripts/render_demo.py`](scripts/rend
 | Skill | Triggers on | Script | What it produces |
 |---|---|---|---|
 | `pr-queue-digest` | "which PRs are stuck?", "PR digest for standup", "what is waiting on review?", "which drafts can we close?" | `pr_queue.py` | PRs waiting on review longer than N hours, PRs blocked on one requested reviewer with a long queue, changes requested with no new commits, commits with no re-request, failing checks, conflicts, approved but unmerged, no reviewer, stale drafts; a review-queue table per reviewer (counts only); one next action per PR, each citing the PR |
-| `iteration-report` | "write the sprint report", "what did we ship?", "what carried over?", "what is our cycle time?" | `iteration_report.py` | shipped PRs with the issues they close, carried over, completed, not planned, newly opened, PRs merged outside the window (listed, not counted), cycle time median and p90 (from first commit or PR creation, stated), review turnaround median; team level only |
+| `iteration-report` | "write the sprint report", "what did we ship?", "what carried over?", "what is our cycle time?" | `iteration_report.py` | shipped PRs with the issues they close, scope added or removed during the window (from timeline events), carried over, completed, not planned, newly opened, PRs merged outside the window (listed, not counted), cycle time median and p90 (from first commit or PR creation, stated), review turnaround median; team level only |
 | `incident-postmortem-timeline` | "write the postmortem for #412", "build the incident timeline", "how long did it take to mitigate?" | `postmortem.py` | a timeline of label changes, assignments, comments, linked PR merges and closes, each citing its event id, comment id or PR; phases derived by stated rules, with disagreeing signals reported; people as roles; contributing factors as questions; a postmortem skeleton |
 | `issue-triage-digest` | "which issues need triage?", "what has nobody answered?", "any duplicate issues?", "prepare the triage meeting" | `issue_triage.py` | unlabelled issues, issues with no reply from anyone but the author for N days, possible duplicates by title word overlap, stale issues, issues with many thumbs-up, and a suggested label per issue from a YAML keyword map; counts per check and per label; Markdown and JSON |
 
@@ -61,7 +61,7 @@ Bad input means a missing folder or file, an empty file, a file that is not JSON
 
 ## Sample output
 
-Real output from the committed fixtures (synthetic data, example handles). Try each one from a clone:
+Real output from the committed fixtures (synthetic data, example handles). Try each one from a clone. Each skill folder also has a README with a longer sample that the tests check against the script, for example [plugins/github-manager/skills/iteration-report/README.md](plugins/github-manager/skills/iteration-report/README.md).
 
 <details>
 <summary><code>python3 scripts/cli.py issue-triage tests/fixtures/issue_triage --keywords tests/fixtures/issue_triage/fixture-labels-keywords.json</code></summary>
@@ -88,12 +88,13 @@ issue triage: example-org/app as of 2026-10-05T09:00:00Z (fixture-meta.json expo
 ```markdown
 ## Iteration report: 2026-09-14 to 2026-09-25
 
-Window 2026-09-14T00:00:00Z to 2026-09-26T00:00:00Z (UTC, end exclusive). Source: fixture-issues.json, fixture-milestones.json, fixture-prs.json. Team level only: no per-person counts or rankings.
+Window 2026-09-14T00:00:00Z to 2026-09-26T00:00:00Z (UTC, end exclusive). Source: fixture-issues.json, fixture-milestones.json, fixture-prs.json, fixture-timeline-201.json, fixture-timeline-205.json, fixture-timeline-209.json. Team level only: no per-person counts or rankings.
 
 ### Summary
 
 - Shipped 5 PRs (#301, #302, #303, #304, #307), closing 4 issues (#201, #202, #203, #207); shipped PRs that link no issue: 1 (#307).
 - Scope: milestone 'Sprint 38' (the one milestone due in the window), 7 issues (#201, #202, #203, #204, #205, #207, #208). Completed 4 (#201, #202, #203, #207), closed as not planned 1 (#208), carried over 2 (#204, #205).
+- Scope changes during the window (milestoned and demilestoned events for 'Sprint 38' in the window, from 3 timeline-<N>.json files): added 2 (#205, #209), removed 1 (#209).
 - Newly opened in the window: 3 issues (#207, #209, #210), of which 1 in scope (#207).
 - Cycle time (first commit to merge, n=5, rows #301, #302, #303, #304, #307): median 2.0d (48.0h), p90 4.0d (96.0h). Start bases used: first commit.
 - Review turnaround (PR creation to first review by someone other than the author, n=4, rows #301, #302, #303, #304): median 14.0h. Merged with no such review: 1 (#307).
@@ -150,8 +151,8 @@ The plugin installs as shown at the top. The scripts are also available without 
 - **Container image** (GitHub Packages, linux/amd64 and linux/arm64), entrypoint `github-manager <subcommand> [args]`; mount the export folder at `/work`:
 
   ```bash
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.3.1 pr-queue /work/export --markdown
-  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.3.1 postmortem /work/export --issue 412 --redact
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.4.0 pr-queue /work/export --markdown
+  docker run --rm -v "$PWD:/work" ghcr.io/basitalisandhu/github-manager-skills:0.4.0 postmortem /work/export --issue 412 --redact
   ```
 
   The image is published when a version tag is pushed, signed with cosign (keyless), with a build provenance attestation and an SPDX SBOM attached to the GitHub Release.

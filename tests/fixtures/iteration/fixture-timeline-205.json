@@ -1,0 +1,23 @@
+[
+  {
+    "id": 9251,
+    "event": "milestoned",
+    "created_at": "2026-09-05T09:10:00Z",
+    "actor": {"login": "octocat-b"},
+    "milestone": {"title": "Sprint 37"}
+  },
+  {
+    "id": 9252,
+    "event": "demilestoned",
+    "created_at": "2026-09-17T10:00:00Z",
+    "actor": {"login": "octocat-b"},
+    "milestone": {"title": "Sprint 37"}
+  },
+  {
+    "id": 9253,
+    "event": "milestoned",
+    "created_at": "2026-09-17T10:00:05Z",
+    "actor": {"login": "octocat-b"},
+    "milestone": {"title": "Sprint 38"}
+  }
+]

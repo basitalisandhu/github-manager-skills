@@ -75,3 +75,39 @@ def test_flatten_pages_and_bots():
     assert h.flatten_pages([{"a": 1}]) == [{"a": 1}]
     assert h.is_bot({"login": "dependabot[bot]"}) and h.is_bot({"login": "x", "is_bot": True})
     assert not h.is_bot({"login": "octocat-a"})
+
+
+def _reference_redact(logins, text, names=None):
+    """The per-login regex loop the Redactor used up to 0.3.1, kept as the reference for equivalence."""
+    import re
+
+    red = h.Redactor(set(), True, names)
+    for login in sorted((x for x in logins if x and len(x) > 1), key=len, reverse=True):
+        rx = re.compile(r"(?<![\w-])@?" + re.escape(login) + r"(?![\w-])", re.IGNORECASE)
+        text = rx.sub(lambda _m, login=login: red.name(login) or "", text)
+    return text
+
+
+def test_redactor_matches_the_per_login_reference_on_random_text():
+    import random
+
+    rng = random.Random(20261026)
+    logins = {"octocat", "octocat-a", "Octo_B", "renovate[bot]", "dev", "x", "app/dependabot", "a1"}
+    pieces = [*logins, "OCTOCAT", "@octocat", "foo@octocat", "octocat-ab", "pre-octocat", "renovate", "[bot]",
+              "dev.", "(dev)", "devs", " ", ", ", "\n", "#12", "café", "octocaté", "-", "_"]
+    names = {"octocat": "responder-1"}
+    for _ in range(2000):
+        text = "".join(rng.choice(pieces) for _ in range(rng.randrange(1, 9)))
+        assert h.Redactor(logins, True, names).text(text) == _reference_redact(logins, text, names), text
+
+
+def test_redactor_cost_grows_with_text_not_texts_times_logins():
+    import time
+
+    logins = {f"octocat-{i}" for i in range(3000)}
+    red = h.Redactor(logins, True)
+    texts = [f"Fix #{i}, thanks @octocat-{i} and octocat-{i + 1}; reviewed by someone-else" for i in range(3000)]
+    start = time.perf_counter()
+    out = [red.text(t) for t in texts]
+    assert time.perf_counter() - start < 2.0, "Redactor.text has gone back to one regex per login"
+    assert "octocat-7" not in out[7] and "someone-else" in out[7]
