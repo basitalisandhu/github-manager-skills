@@ -4,6 +4,25 @@ All notable changes to this project are documented here. The format follows Keep
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-26
+
+### Added
+
+- `iteration-report` lists scope added or removed during the window (#3). With `timeline-<N>.json` files in the export, `milestoned` and `demilestoned` events for the scope milestone inside the window appear as "Added to scope during the window" and "Removed from scope during the window", each citing its event id (or the file and row when the event has none), and the summary says how many were added and removed. Without timeline files, or when the scope is not a milestone, the report says scope changes were not measured. SKILL.md has the export loop; three fixture timelines and seven tests cover it.
+- A README in every skill folder with a real sample produced by running the script on its fixture. `scripts/render_samples.py` refreshes them and `tests/test_skill_readmes.py` fails when a sample no longer matches the script.
+- `tests/test_fuzz_inputs.py`: seeded fuzzing of every export each script reads (values swapped for other JSON types, keys dropped, lists emptied or wrapped, files truncated) and of the YAML keyword map. Replay a failure with `FUZZ_SEED`, run longer with `FUZZ_ROUNDS`.
+- `tests/test_integration_chain.py`: one export folder for an incident inside a sprint, run through all four subcommands of the dispatcher; the postmortem's merged PRs must be shipped in the iteration report with the same merge times, and the open follow-up PR must be flagged by the PR queue.
+
+### Fixed
+
+- Hand-edited or unusual exports no longer crash with a traceback. The fuzzer found 22 places where a field of the wrong JSON type (a number for a title, an object for a body, a string for a list of labels, reviews or comments, a list for a milestone title, a non-numeric thumbs-up count, an object for `meta.json` repo) raised `TypeError`, `AttributeError` or `ValueError`. Such fields are now read as empty through shared `text_of`, `list_of` and `dict_of` helpers, so the scripts report what they can; malformed numbers and times still exit 2 as before.
+- `--redact` was quadratic: it ran one regular expression per login over every text, so its cost grew with texts times logins. It now makes one pass per text and looks each word up in a table; output is byte for byte the same. On inputs 100 times the fixtures, `postmortem.py --redact` went from 3.22s to 0.13s, `pr_queue.py --redact` from 1.14s to 0.09s and `iteration_report.py --redact` from 0.77s to 0.08s. A test compares it with the old method on random text and fails if it slows down again.
+
+### Changed
+
+- `iteration-report` description quotes "write the iteration report" and names merged and slipped work; `incident-postmortem-timeline` description points sprint reports at `iteration-report` (its "incidents with no GitHub issue" note moved to Limits). A lexical trigger check across the four skills (20 should-trigger, 60 should-not-trigger prompts in cross mode) went from 2 missed and 1 false trigger to none.
+- Version 0.4.0 in `pyproject.toml`, `plugin.json`, `marketplace.json`, the dispatcher and the README container examples.
+
 ## [0.3.1] - 2026-10-18
 
 ### Fixed
@@ -73,6 +92,8 @@ All notable changes to this project are documented here. The format follows Keep
 - `release.yml`: PyPI trusted publishing of the `github-manager-skills` package, off until the repository variable `PYPI_PUBLISH` is `true`.
 - Six tasks in `docs/good-first-issues.md`.
 
-[Unreleased]: https://github.com/basitalisandhu/github-manager-skills/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/basitalisandhu/github-manager-skills/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/basitalisandhu/github-manager-skills/compare/v0.3.1...v0.4.0
+[0.3.1]: https://github.com/basitalisandhu/github-manager-skills/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/basitalisandhu/github-manager-skills/compare/v0.2.0...v0.3.0
 [0.1.0]: https://github.com/basitalisandhu/github-manager-skills/releases/tag/v0.1.0
